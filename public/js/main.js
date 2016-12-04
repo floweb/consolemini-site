@@ -3,7 +3,7 @@ Vue.component('game-item', {
     template: '<li>{{ game.game_name }} - Nombre de bits: {{ game.total_bits }} </li>'
 })
 
-var gameList = new Vue({
+var gamesList = new Vue({
     el: '#game-list',
     data: {
         games: null
@@ -19,15 +19,16 @@ var gameList = new Vue({
             xhr.open('GET', '/db');
             xhr.onload = function() {
                 res = JSON.parse(xhr.responseText);
+
                 self.games = _.chain(res)
                     .filter(function(game) {
                         return game.total_bits > 0;
                     })
                     .sortBy(function(game) {
-                        return -game.total_bits;
+                        return game.priority;
                     })
                     .sortBy(function(game) {
-                        return -game.priority;
+                        return -game.total_bits;
                     })
                     .value();
             }
