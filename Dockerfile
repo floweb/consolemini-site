@@ -5,4 +5,4 @@ VOLUME /data
 
 RUN npm install json-server
 
-EXPOSE 80
+EXPOSE 3000
