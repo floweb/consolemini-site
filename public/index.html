@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>ConsoleMini</title>
-    <meta name="description" content="">
+    <meta name="description" content="Site officiel de ConsoleMini, l'émission de Monsieur Sapin">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -16,10 +16,16 @@
   <body>
     <div class="container">
       <div class="row">
-        <div class="col-md-12" id="game-list">
+        <div class="col-md-12" id="game-cheered-list">
           <ol>
-            <game-item v-for="game in games" v-bind:game="game"></game-item>
+            <game-item v-for="game in gamesCheered" v-bind:game="game"></game-item>
           </ol>
+        </div>
+        <div class="col-md-12" id="game-other-list">
+          <button id="display-all-games" v-if="displayAllGames == false" v-on:click="displayAllGames = true">Afficher tous les jeux…</button>
+          <ul v-if="displayAllGames">
+            <game-other-item v-for="game in gamesOther" v-bind:game="game"></game-other-item>
+          </ul>
         </div>
       </div>
 
@@ -30,6 +36,7 @@
     </div> <!-- /container -->
     <script src="js/underscore-min.js"></script>
     <script src="js/vue.js"></script>
+    <script src="js/axios.min.js"></script>
     <script src="js/main.js"></script>
   </body>
 </html>
