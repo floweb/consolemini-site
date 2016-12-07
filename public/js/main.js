@@ -1,6 +1,6 @@
 Vue.component('game-item', {
     props: ['game'],
-    template: '<li>{{ game.game_name }} - Nombre de bits: {{ game.total_bits }} </li>'
+    template: '<li>{{ game[0] }} : {{ game[1].game_name }} - Nombre de bits: {{ game[1].total_bits }} </li>'
 });
 
 var gamesList = new Vue({
@@ -16,15 +16,16 @@ var gamesList = new Vue({
             var self = this;
 
             axios.get('/db').then(function (response) {
-                self.gamesCheered = _.chain(response.data)
+                var data = _.zip(_.keys(response.data), _.values(response.data))
+                self.gamesCheered = _.chain(data)
                     .filter(function(game) {
-                        return game.total_bits > 0;
+                        return game[1].total_bits > 0;
                     })
                     .sortBy(function(game) {
-                        return game.priority;
+                        return game[1].priority;
                     })
                     .sortBy(function(game) {
-                        return -game.total_bits;
+                        return -game[1].total_bits;
                     })
                     .value();
             });
@@ -34,7 +35,7 @@ var gamesList = new Vue({
 
 Vue.component('game-other-item', {
     props: ['game'],
-    template: '<li>{{ game }} - {{ game.game_name }}</li>'
+    template: '<li>{{ game[0] }} : {{ game[1].game_name }}</li>'
 });
 
 var gamesOtherList = new Vue({
@@ -51,12 +52,13 @@ var gamesOtherList = new Vue({
             var self = this;
 
             axios.get('/db').then(function (response) {
-                self.gamesOther = _.chain(response.data)
+                var data = _.zip(_.keys(response.data), _.values(response.data))
+                self.gamesOther = _.chain(data)
                     .filter(function(game) {
-                        return game.total_bits === 0;
+                        return game[1].total_bits === 0;
                     })
                     .sortBy(function(game) {
-                        return game.game_name;
+                        return game[1].game_name;
                     })
                     .value();
             });
