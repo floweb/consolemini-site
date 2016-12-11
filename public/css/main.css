@@ -48,7 +48,12 @@ hr {
   margin-top: 20px;
 }
 
-#game-other-list ul {
-  margin-top: 20px;
+#game-cheered-list ol,
+#uncheered-games,
+#finished-games {
+  margin-top: 10px;
 }
 
+#finished-games > li {
+  text-decoration: line-through;
+}

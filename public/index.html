@@ -33,19 +33,27 @@
     <div class="container">
       <div class="row">
         <div class="col-md-12" id="game-cheered-list">
+          <span>Classement actuel :</span>
           <ol>
             <game-item v-for="game in gamesCheered" v-bind:game="game"></game-item>
           </ol>
         </div>
-        <div class="col-md-12" id="game-other-list">
+        <div class="col-md-12" id="game-other-lists">
           <button id="display-all-games" type="button" class="btn btn-default"
                   v-if="displayAllGames == false" v-on:click="displayAllGames = true">
             <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
             Afficher tous les jeux…
           </button>
-          <ul v-if="displayAllGames">
-            <game-other-item v-for="game in gamesOther" v-bind:game="game"></game-other-item>
-          </ul>
+          <div v-if="displayAllGames">
+            <span>Jeux actuellement sans bits :</span>
+            <ul id="uncheered-games">
+              <game-uncheered-item v-for="game in gamesOther" v-bind:game="game"></game-uncheered-item>
+            </ul>
+            <span>Jeux terminés :</span>
+            <ul id="finished-games">
+              <game-finished-item v-for="game in gamesFinished" v-bind:game="game"></game-finished-item>
+            </ul>
+          </div>
         </div>
       </div>
 
