@@ -1,8 +1,54 @@
 body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+  background-color: #85A9D7;
+}
+
+nav {
+  /* base color:
+  background-color: #3969a7;*/
+  background-color: #3969a7;
+}
+
+.navbar-header {
+  height: 80px;
+}
+
+.navbar-brand {
+  padding: 0px; /* firefox bug fix */
+  text-align: center;
+}
+
+.navbar-brand > a {
+  text-align: center;
+}
+
+.navbar-brand > img {
+  text-align: center;
+  max-height: 80px;
+  padding: 0px; /* firefox bug fix */
+  width: auto;
+}
+
+#sonic {
+  padding-top: 8px;
+  height: 75px;
+}
+
+#display-all-games {
+  margin-top: 10px;
+  margin-left: 18px;
+}
+
+hr {
+  color: #000;
+  width: 50%;
+  margin-top: 30px;
+}
+
+#game-cheered-list {
+  margin-top: 20px;
 }
 
 #game-other-list ul {
-	margin-top: 20px;
+  margin-top: 20px;
 }
+

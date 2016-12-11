@@ -8,12 +8,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/bootstrap-theme.min.css">
     <link rel="stylesheet" href="css/main.css">
 
     <script src="js/modernizr-2.8.3.min.js"></script>
   </head>
   <body>
+    <nav class="navbar navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="/">
+            <img id="cm-logo" src="img/consolemini.png"
+                 alt="Site officiel de ConsoleMini">
+          </a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+              <img id="sonic" src="img/sonic.gif" alt="Sonic !">
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div class="container">
       <div class="row">
         <div class="col-md-12" id="game-cheered-list">
@@ -22,7 +38,11 @@
           </ol>
         </div>
         <div class="col-md-12" id="game-other-list">
-          <button id="display-all-games" v-if="displayAllGames == false" v-on:click="displayAllGames = true">Afficher tous les jeux…</button>
+          <button id="display-all-games" type="button" class="btn btn-default"
+                  v-if="displayAllGames == false" v-on:click="displayAllGames = true">
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+            Afficher tous les jeux…
+          </button>
           <ul v-if="displayAllGames">
             <game-other-item v-for="game in gamesOther" v-bind:game="game"></game-other-item>
           </ul>
@@ -31,9 +51,11 @@
 
       <hr>
       <footer>
-        <p>&copy; Florian Le Frioux - 2016</p>
+        <p>
+          ConsoleMini par Monsieur Sapin &minus; <a href="https://github.com/floweb/consolemini-site">Site et outils par floweb</a>
+        </p>
       </footer>
-    </div> <!-- /container -->
+    </div>
     <script src="js/underscore-min.js"></script>
     <script src="js/vue.js"></script>
     <script src="js/axios.min.js"></script>

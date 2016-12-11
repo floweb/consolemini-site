@@ -9,12 +9,12 @@ var gamesList = new Vue({
         gamesCheered: null
     },
     created: function() {
-        this.computeData();
+        this.fetchData();
+        this.timer = setInterval(this.fetchData, 10000);
     },
     methods: {
-        computeData: function() {
+        fetchData: function() {
             var self = this;
-
             axios.get('/games/?total_bits_gte=1').then(function (response) {
                 self.gamesCheered = _.chain(response.data)
                     .sortBy(function(game) {
@@ -24,8 +24,11 @@ var gamesList = new Vue({
                         return -game.total_bits;
                     })
                     .value();
-            });
+            })
         }
+    },
+    beforeDestroy() {
+      clearIntervall(this.timer)
     }
 });
 
@@ -41,17 +44,18 @@ var gamesOtherList = new Vue({
         displayAllGames: false
     },
     created: function() {
-        this.computeData();
+        this.fetchData();
+        this.timer = setInterval(this.fetchData, 10000);
     },
     methods: {
-        computeData: function() {
+        fetchData: function() {
             var self = this;
-
-            axios.get('/games/?total_bits=0').then(function (response) {
-                self.gamesOther = _.sortBy(response.data, function(game) {
-                    return game.game_name;
-                });
+            axios.get('/games/?total_bits=0&_sort=game_name').then(function (response) {
+                self.gamesOther = response.data;
             });
         }
+    },
+    beforeDestroy() {
+      clearIntervall(this.timer)
     }
 })

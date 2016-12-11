@@ -43,6 +43,8 @@
              req.url === '/favicon.ico' ||
              req.url === '/db' ||
              req.url.startsWith('/games') ||
+             req.url.startsWith('/fonts') ||
+             req.url.startsWith('/img') ||
              req.url.startsWith('/css') ||
              req.url.startsWith('/js'))) {
             next();
